@@ -1,7 +1,7 @@
 package info.uuia.sdk.repository;
 
 import info.uuia.sdk.domain.schedule.Schedule;
-import info.uuia.sdk.util.NotImplementedException;
+import info.uuia.sdk.exception.NotImplementedException;
 
 public class GetSchedule implements DataRepository<Schedule>{
 

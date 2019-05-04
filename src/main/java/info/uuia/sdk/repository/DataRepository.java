@@ -1,7 +1,7 @@
 package info.uuia.sdk.repository;
 
 
-import info.uuia.sdk.util.NotImplementedException;
+import info.uuia.sdk.exception.NotImplementedException;
 
 /**
  * 可返回的自定义数据源

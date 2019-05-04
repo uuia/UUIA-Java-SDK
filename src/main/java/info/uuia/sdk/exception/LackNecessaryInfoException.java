@@ -1,4 +1,4 @@
-package info.uuia.sdk.util;
+package info.uuia.sdk.exception;
 
 public class LackNecessaryInfoException extends Exception{
     public LackNecessaryInfoException(String message) {

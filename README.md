@@ -1,9 +1,24 @@
-# java-sdk
-UUIA SDK in Java.
+# UUIA Java SDK
+UUIA SDK in Java. 向校园开发者提供快速适配 UUIA 框架并接入葫芦校园信息平台的校园信息聚合服务子节点服务端。
 
-# API
-## 基础(group="base")
-### 1. 获取需要绑定的账户类型
+开发者仅需实现对应校园的各项服务数据的获取逻辑即可，无论其数据来源是官方授权接口或是自动爬虫。
+
+## SDK 异常处理
+#### LackNecessaryInfoException
+
+当您填充的向中心服务器返回的数据类型时没有填充必填属性，此异常将被抛出。
+
+#### NotImplementedException
+
+您还未实现此操作的数据获取逻辑时，此异常将抛出。
+
+
+# UUIA API 文档
+
+下列文档阐述了 UUIA 子节点和中心服务器的通信规约， UUIA SDK 已经为您封装好此规约，您仅需补全代码中的TODO语句，并按照需要返回的数据类填充数据类型即可。
+
+## 基础组接口 (group="base")
+### 1. 获取需要绑定的帐户类型
 #### 说明
 获得需要的密码说明及对应编号
 #### 类型
@@ -13,7 +28,7 @@ JsonObject object
 属性 | 类型 | 说明
 -|-|-
 group|String|group="base"
-action|String|action="bindType" 获取需要的账户信息
+action|String|action="bindType" 获取需要的帐户信息
 #### 返回参数
 JsonObject object
 
@@ -25,14 +40,19 @@ data|JsonArray|是|返回请求的内容
 JsonArray data
 属性 | 类型 | 必填 | 说明
 -|-|-|-
-accountTypes | JsonArray | 是 | 多组账户类型与编号 
--- accountType|JsonObject|是|一组账户类型与编号
+accountTypes | JsonArray | 是 | 多组帐户类型与编号 
+-- accountType|JsonObject|是|一组帐户类型与编号
 ---- comment|String|是|备注
 ---- code|int|是|编号
+
+#### 示例
+```
 [
 {"comment":"教务处","code":"001"},  
 {"comment":"一卡通","code":"002"}
 ]
+```
+
 ### 2. 验证用户身份
 #### 说明
 验证用户身份接口
@@ -51,6 +71,9 @@ accounts|JsonArray|多组用户名与密码
 ---- username|String|用户名
 ---- password|String|密码
 ---- code|int|账号密码对应编号
+
+#### 示例
+```
 {  
 "action":"bind",  
 "uuid":"walndlng932klfnal",  
@@ -59,6 +82,7 @@ accounts|JsonArray|多组用户名与密码
 {"username":"20164930","password":"164930","code":"002"},  
 {"username":"20164930","password":"20164930","code":"003"}]  
 }
+```
 
 #### 返回参数
 JsonObject object
@@ -77,6 +101,9 @@ uuid|String|是|身份标识
 vaild|boolean|是|所有组的用户名及密码是否均有效
 invalidAccountType|JsonArray|否|未通过的用户名与密码
 -- code|int|是|编号
+
+#### 示例
+```
 {  
 "uuid":"walndlng932klfnal",  
 "vaild":true  
@@ -86,6 +113,8 @@ invalidAccountType|JsonArray|否|未通过的用户名与密码
 "vaild":false,  
 "invaildAccountTypes": ["001","003"]  
 }
+```
+
 ### 3. 用户信息
 #### 说明
 获取用户身份信息
@@ -122,6 +151,8 @@ studentClass|String|否|班级
 studentID|String|否|学号
 studentType|否|学生类型
 
+#### 示例
+```
 {  
 "name": "张三",  
 "gender": 0,  
@@ -132,6 +163,7 @@ studentType|否|学生类型
 "studentId": "20165241",  
 "studentType": "本科生"  
 }
+```
 
 ### 4. 校园卡
 #### 说明
@@ -169,12 +201,16 @@ balance|String|是|一卡通余额
 ------  key|String|是|其他信息名称
 ------  value|String|是|其他信息值
 
+#### 示例
+```
 {  
 ”studentId“: "20165213",  
 "name": "张三",  
 "balance": 102.98,  
 "extraData": [{"key": "补助金额", "value": "20"}, {"key": "校卡状态","value": "已激活"}]  
 }
+```
+
 ### 5. 成绩
 #### 说明
 获取用户成绩信息
@@ -215,6 +251,8 @@ courses|JsonArray|是|成绩课程组
 -------- key|String|是|其他信息名称
 -------- value|String|是|其他信息值
 
+#### 示例
+```
 {  
 "uuid":"wladlfd9a8732",  
 "gpa":"3.55",  
@@ -228,6 +266,7 @@ courses|JsonArray|是|成绩课程组
         {"key": "平时成绩", "value": "93"}]  
     }]  
 }
+```
 
 ### 6. 考试日程
 #### 说明
@@ -266,6 +305,9 @@ courses|JsonArray|是|考试课程组
 ------ extraDataInfo|JsonObject|否|课程其他信息
 -------- key|String|是|其他信息名称
 -------- value|String|是|其他信息值
+
+#### 示例
+```
 [{  
 ​	"name": "高等数学",  
 ​	"courseCode": "课程代码(可选)",  
@@ -273,6 +315,7 @@ courses|JsonArray|是|考试课程组
 ​	"place": "一号A101" ,  
 ​	"extraData": [{"key": "座位号", "value": "68"}, {"key": "考试类型", "value": "考查"}]  
 }]
+```
 
 ###  7.课表
 #### 说明
@@ -314,6 +357,8 @@ courseTable|JsonArray|是|学期课表
 -------- sections|int[]|是|课程上课节
 -------- classroom|String|否|课程上课地点
 
+#### 示例
+```
 {  
 "name": "高等数学1",  
 "teachers": ["张三", "李四"],  
@@ -334,3 +379,4 @@ courseTable|JsonArray|是|学期课表
     classroom: "一号B203"}  
 ]  
 }
+```

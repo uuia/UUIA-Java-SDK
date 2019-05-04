@@ -3,8 +3,8 @@ package info.uuia.sdk.service;
 import com.alibaba.fastjson.JSONObject;
 import info.uuia.sdk.domain.campuscard.CampusCard;
 import info.uuia.sdk.repository.GetCampusCard;
-import info.uuia.sdk.util.LackNecessaryInfoException;
-import info.uuia.sdk.util.NotImplementedException;
+import info.uuia.sdk.exception.LackNecessaryInfoException;
+import info.uuia.sdk.exception.NotImplementedException;
 import info.uuia.sdk.util.UuiaLogger;
 
 class ReturnCampusCard {
