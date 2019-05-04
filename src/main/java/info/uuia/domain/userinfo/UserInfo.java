@@ -1,9 +1,9 @@
 package info.uuia.domain.userinfo;
 
 import com.alibaba.fastjson.JSONObject;
-import info.uuia.domain.Response;
+import info.uuia.domain.ResponseData;
 
-public class UserInfo extends JSONObject implements Response {
+public class UserInfo extends JSONObject implements ResponseData {
     private String uuid;
     private String name;
     private String gender;

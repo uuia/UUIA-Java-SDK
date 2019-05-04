@@ -1,16 +1,17 @@
 package info.uuia.service;
 
 import com.alibaba.fastjson.JSONObject;
-import info.uuia.domain.score.Score;
-import info.uuia.repository.GetScore;
+import info.uuia.domain.campuscard.CampusCard;
+import info.uuia.repository.GetCampusCard;
 import info.uuia.util.LackNecessaryInfoException;
 import info.uuia.util.NotImplementedException;
 import info.uuia.util.UUIALogger;
 
-public class ReturnScore {
-    Score getResponse(JSONObject request) {
+public class ReturnCampusCard {
+    CampusCard getResponse(JSONObject request) {
+
         try {
-            Score response = new GetScore().getData((String) request.get("uuid"));
+            CampusCard response = new GetCampusCard().getData((String) request.get("uuid"));
             if (check(response)) {
                 return response;
             }
@@ -23,13 +24,13 @@ public class ReturnScore {
         return null;
     }
 
-    private boolean check(Score data) throws LackNecessaryInfoException {
+    private boolean check(CampusCard data) throws LackNecessaryInfoException {
         if (data.getUuid()==null) {
             throw new LackNecessaryInfoException("Need String uuid as a property of " + data.getClass().getName());
-        } else if (data.getGpa()==null) {
-            throw new LackNecessaryInfoException("Need String gpa as a property of " + data.getClass().getName());
-        } else if (data.getCourses()==null) {
-            throw new LackNecessaryInfoException("Need Array courses as a property of " + data.getClass().getName());
+        } else if (data.getName()==null) {
+            throw new LackNecessaryInfoException("Need String name as a property of " + data.getClass().getName());
+        } else if (data.getBalance()==null) {
+            throw new LackNecessaryInfoException("Need String balance as a property of " + data.getClass().getName());
         }
         return true;
     }

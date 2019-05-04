@@ -32,7 +32,7 @@ public class Parser {
             case "exam":
                 return new ReturnExam().getResponse(request);
             case "eCard":
-                return new ReturnEcard().getResponse(request);
+                return new ReturnCampusCard().getResponse(request);
             default:
                 break;
         }

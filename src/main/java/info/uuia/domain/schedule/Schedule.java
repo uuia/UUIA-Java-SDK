@@ -2,10 +2,11 @@ package info.uuia.domain.schedule;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import info.uuia.domain.ResponseData;
 
 import java.util.ArrayList;
 
-public class Schedule {
+public class Schedule implements ResponseData{
     private String uuid;
     private JSONArray courses;
 

@@ -1,20 +1,20 @@
-package info.uuia.domain.ecard;
+package info.uuia.domain.campuscard;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import info.uuia.domain.ExtraDataItem;
-import info.uuia.domain.Response;
+import info.uuia.domain.ResponseData;
 
 import java.util.ArrayList;
 
-public class Ecard implements Response {
+public class CampusCard implements ResponseData {
     private String uuid;
     private String studentID;
     private String name;
     private String balance;
     private JSONArray extraData;
 
-    public Ecard(String studentID, String name, String balance, ArrayList<ExtraDataItem> extraData) {
+    public CampusCard(String studentID, String name, String balance, ArrayList<ExtraDataItem> extraData) {
         this.studentID = studentID;
         this.name = name;
         this.balance = balance;

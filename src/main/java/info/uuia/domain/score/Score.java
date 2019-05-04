@@ -2,10 +2,11 @@ package info.uuia.domain.score;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import info.uuia.domain.ResponseData;
 
 import java.util.ArrayList;
 
-public class Score {
+public class Score implements ResponseData{
     private String uuid;
     private String gpa;
     private JSONArray courses;
