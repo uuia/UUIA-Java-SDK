@@ -12,7 +12,7 @@ public class Validator {
         String signature = request.getString("signature");
         String timestamp = request.getString("timestamp");
         String nonce = request.getString("nonce");
-        UuiaLogger.i("uuia校验接口", signature + "," + timestamp + "," + nonce);
+        UuiaLogger.i("UUIA Validator", "sig="+signature + ",timestamp=" + timestamp + ",nonce=" + nonce);
 
         String[] strings = new String[]{Constant.appToken, timestamp, nonce};
         StringBuilder builder = new StringBuilder();
@@ -23,11 +23,11 @@ public class Validator {
 
         String res = sha1(builder.toString());
         if (signature.equalsIgnoreCase(res)) {
-            UuiaLogger.i("成功！", "Success");
+            UuiaLogger.i("UUIA Validator", "Success");
             return true;
         }
 
-        UuiaLogger.i("失败", "Fail");
+        UuiaLogger.i("UUIA Validator", "Fail");
         return false;
     }
 
