@@ -12,12 +12,13 @@ import info.uuia.sdk.util.UuiaLogger;
 public class Parser {
     /**
      * 解析并返回中心服务器发出的请求
+     *
      * @param request 请求JSON内容
      * @return 解析后的UUIA结果。若为null，则表示出现错误。
      */
     public ResponseData parse(JSONObject request) {
         String group = request.getString("group");
-        if ("base".equals(group)){
+        if ("base".equals(group)) {
             return handleForBase(request);
         } else {
             UuiaLogger.i("UUIA Parser", "其它的非法请求。");
@@ -27,7 +28,7 @@ public class Parser {
 
     private ResponseData handleForBase(JSONObject request) {
         String action = request.getString("action");
-        switch (action){
+        switch (action) {
             case "bindType":
 
                 break;

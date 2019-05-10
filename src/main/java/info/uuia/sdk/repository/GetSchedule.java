@@ -3,7 +3,7 @@ package info.uuia.sdk.repository;
 import info.uuia.sdk.domain.schedule.Schedule;
 import info.uuia.sdk.exception.NotImplementedException;
 
-public class GetSchedule implements DataRepository<Schedule>{
+public class GetSchedule implements DataRepository<Schedule> {
 
     @Override
     public Schedule getData(String uuid) throws NotImplementedException {

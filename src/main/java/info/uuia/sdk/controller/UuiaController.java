@@ -22,7 +22,7 @@ public class UuiaController {
         String msg;
 
         // 验证请求来自中央服务器
-        if (!new Validator().validate(request)){
+        if (!new Validator().validate(request)) {
             code = Constant.RESPONSE_CODE_UNAUTHORIZED;
             msg = Constant.RESPONSE_MSG_UNAUTHORIZED;
         } else {

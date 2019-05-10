@@ -12,7 +12,7 @@ public class Validator {
         String signature = request.getString("signature");
         String timestamp = request.getString("timestamp");
         String nonce = request.getString("nonce");
-        UuiaLogger.i("UUIA Validator", "sig="+signature + ",timestamp=" + timestamp + ",nonce=" + nonce);
+        UuiaLogger.i("UUIA Validator", "sig=" + signature + ",timestamp=" + timestamp + ",nonce=" + nonce);
 
         String[] strings = new String[]{Constant.appToken, timestamp, nonce};
         StringBuilder builder = new StringBuilder();

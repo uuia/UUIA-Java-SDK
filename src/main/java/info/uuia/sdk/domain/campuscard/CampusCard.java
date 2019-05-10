@@ -5,10 +5,14 @@ import com.alibaba.fastjson.JSONArray;
 import info.uuia.sdk.domain.ExtraDataItem;
 import info.uuia.sdk.domain.ResponseData;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 
 public class CampusCard implements ResponseData {
+
+    @NotNull
     private String uuid;
+
     private String studentID;
     private String name;
     private String balance;
