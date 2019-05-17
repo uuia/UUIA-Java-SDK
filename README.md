@@ -395,3 +395,11 @@ courseTable|JsonArray|是|学期课表
 ]  
 }
 ```
+
+## 状态编码
+|编码|信息|
+-|-
+|200|OK|
+|401|Unauthorized|
+|500|Internal Server Error|
+|504|Gateway Timeout|

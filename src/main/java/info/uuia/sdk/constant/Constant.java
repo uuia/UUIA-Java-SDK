@@ -6,7 +6,7 @@ public class Constant {
     // API 响应码
     public static final String RESPONSE_CODE_OK = "200";
     public static final String RESPONSE_CODE_UNAUTHORIZED = "401";
-    public static final String RESPONSE_CODE_INTERNAL_SERVER_ERROR = "504";
+    public static final String RESPONSE_CODE_INTERNAL_SERVER_ERROR = "500";
     public static final String RESPONSE_CODE_GATEWAY_TIMEOUT = "504";
     private static final String appName = "";
     public static final String RESPONSE_MSG_OK = "[" + appName + "]" + "OK";

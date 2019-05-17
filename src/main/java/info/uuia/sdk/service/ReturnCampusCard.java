@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 
 class ReturnCampusCard extends ReturnData<CampusCard> {
 
+    @Override
     void check(@Valid CampusCard data) throws LackNecessaryInfoException {
         if (data.getUuid() == null) {
             throw new LackNecessaryInfoException("Need String uuid as a property of " + data.getClass().getName());
