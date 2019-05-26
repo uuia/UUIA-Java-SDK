@@ -40,10 +40,12 @@ UUIA SDK in Java，一个向校园开发者提供快速适配 UUIA 框架并接�
 POST
 #### 请求参数
 JsonObject object
+
 属性 | 类型 | 说明
 -|-|-
 group|String|group="base"
 action|String|action="bindType" 获取需要的帐户信息
+
 #### 返回参数
 JsonObject object
 
@@ -61,10 +63,16 @@ accountTypes | JsonArray | 是 | 多组帐户类型与编号
 ---- code|int|是|编号
 
 #### 示例
-```
+```javascript
 [
-{"comment":"教务处","code":"001"},  
-{"comment":"一卡通","code":"002"}
+	{
+		"comment": "教务处",
+		"code": "001"
+	},
+	{
+		"comment": "一卡通",
+		"code": "002"
+	}
 ]
 ```
 
@@ -88,14 +96,26 @@ accounts|JsonArray|多组用户名与密码
 ---- code|int|账号密码对应编号
 
 #### 示例
-```
-{  
-"action":"bind",  
-"uuid":"walndlng932klfnal",  
-"accounts":  [  
-{"username":"20164930","password":"foewi","code":"001"},  
-{"username":"20164930","password":"164930","code":"002"},  
-{"username":"20164930","password":"20164930","code":"003"}]  
+```javascript
+{
+	"action": "bind",
+	"uuid": "foo",
+	"accounts": [{
+			"username": "20164930",
+			"password": "bar",
+			"code": "001"
+		},
+		{
+			"username": "20164930",
+			"password": "foo",
+			"code": "002"
+		},
+		{
+			"username": "20164930",
+			"password": "bar",
+			"code": "003"
+		}
+	]
 }
 ```
 
@@ -118,15 +138,23 @@ invalidAccountType|JsonArray|否|未通过的用户名与密码
 -- code|int|是|编号
 
 #### 示例
+
+绑定成功情况
+
+```javascript
+{
+	"uuid": "walndlng932klfnal",
+	"vaild": true
+}
 ```
+
+绑定错误情况
+
+```javascript
 {  
-"uuid":"walndlng932klfnal",  
-"vaild":true  
-}  
-{  
-"uuid":"walndlng932klfnal",  
-"vaild":false,  
-"invaildAccountTypes": ["001","003"]  
+	"uuid":"walndlng932klfnal",  
+	"vaild":false,  
+	"invaildAccountTypes": ["001","003"]  
 }
 ```
 
@@ -167,16 +195,17 @@ studentID|String|否|学号
 studentType|否|学生类型
 
 #### 示例
-```
-{  
-"name": "张三",  
-"gender": 0,  
-"college": "软件学院",  
-"major": "软件工程",  
-"grade": "2016",  
-"studentClass": "软英1601",  
-"studentId": "20165241",  
-"studentType": "本科生"  
+
+```javascript
+{
+	"name": "张三",
+	"gender": 0,
+	"college": "软件学院",
+	"major": "软件工程",
+	"grade": "2016",
+	"studentClass": "软英1601",
+	"studentId": "20165241",
+	"studentType": "本科生"
 }
 ```
 
@@ -217,12 +246,18 @@ balance|String|是|一卡通余额
 ------  value|String|是|其他信息值
 
 #### 示例
-```
-{  
-”studentId“: "20165213",  
-"name": "张三",  
-"balance": 102.98,  
-"extraData": [{"key": "补助金额", "value": "20"}, {"key": "校卡状态","value": "已激活"}]  
+```javascript
+{
+	"studentId": "20165213",
+	"name": "张三",
+	"balance": 102.98,
+	"extraData": [{
+		"key": "补助金额",
+		"value": "20"
+	}, {
+		"key": "校卡状态",
+		"value": "已激活"
+	}]
 }
 ```
 
@@ -267,19 +302,26 @@ courses|JsonArray|是|成绩课程组
 -------- value|String|是|其他信息值
 
 #### 示例
-```
-{  
-"uuid":"wladlfd9a8732",  
-"gpa":"3.55",  
-"courses": [{  
-    "name": "高等数学1",  
-    "courseCode": "98y13r(可选)",  
-    "credit": 2.0,  
-    "grade": 99,   
-    "extraData": [  
-        {"key": "期中成绩", "value": "96"},   
-        {"key": "平时成绩", "value": "93"}]  
-    }]  
+
+```javascript
+{
+	"uuid": "wladlfd9a8732",
+	"gpa": "3.55",
+	"courses": [{
+		"name": "高等数学1",
+		"courseCode": "foobar(可选)",
+		"credit": 2.0,
+		"grade": 99,
+		"extraData": [{
+				"key": "期中成绩",
+				"value": "96"
+			},
+			{
+				"key": "平时成绩",
+				"value": "93"
+			}
+		]
+	}]
 }
 ```
 
@@ -322,13 +364,20 @@ courses|JsonArray|是|考试课程组
 -------- value|String|是|其他信息值
 
 #### 示例
-```
-[{  
-​	"name": "高等数学",  
-​	"courseCode": "课程代码(可选)",  
-​	"time": "13:00",  
-​	"place": "一号A101" ,  
-​	"extraData": [{"key": "座位号", "value": "68"}, {"key": "考试类型", "value": "考查"}]  
+
+```javascript
+[{
+	"name": "高等数学",
+	"courseCode": "课程代码(可选)",
+	"time": "13:00",
+	"place": "一号A101",
+	"extraData": [{
+		"key": "座位号",
+		"value": "68"
+	}, {
+		"key": "考试类型",
+		"value": "考查"
+	}]
 }]
 ```
 
@@ -373,30 +422,34 @@ courseTable|JsonArray|是|学期课表
 -------- classroom|String|否|课程上课地点
 
 #### 示例
-```
-{  
-"name": "高等数学1",  
-"teachers": ["张三", "李四"],  
-"schedules": [  
-    {"weeks": [1,2,3,4,6,7,8],  
-    "day": 2,  
-    "section": [1,2],  
-    classroom: "信息A101"  
-    },  
-    {"weeks": [1,2,3,4,5,6,7,8],  
-    "day": 4,  
-    "section": [3,4],  
-    classroom:  "一号A101"  
-    },  
-    {"weeks": [9],  
-    "day": 5,  
-    "section": [7,8],  
-    classroom: "一号B203"}  
-]  
+
+```javascript
+{
+	"name": "高等数学1",
+	"teachers": ["张三", "李四"],
+	"schedules": [{
+			"weeks": [1, 2, 3, 4, 6, 7, 8],
+			"day": 2,
+			"section": [1, 2],
+			"classroom": "信息A101"
+		},
+		{
+			"weeks": [1, 2, 3, 4, 5, 6, 7, 8],
+			"day": 4,
+			"section": [3, 4],
+			"classroom": "一号A101"
+		},
+		{
+			"weeks": [9],
+			"day": 5,
+			"section": [7, 8],
+			"classroom": "一号B203"
+		}
+	]
 }
 ```
 
-## 状态编码
+## 响应状态码定义
 |编码|信息|
 -|-
 |200|OK|
