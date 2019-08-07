@@ -59,10 +59,6 @@ public class UuiaController {
     public JSONObject mainController(@RequestBody JSONObject requestBody) {
         String group = requestBody.getString("group");
 
-        // 身份验证
-        if(!new Validator().validate(requestBody)) {
-            return getResponse(402,"errror signature", new JSONObject());
-        }
 
         if(group == null) {
             return getResponse(400, "No group", new JSONObject());

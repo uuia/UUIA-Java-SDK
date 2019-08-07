@@ -57,6 +57,24 @@ public class Base implements Group {
     * */
     @Override
     public JSONObject getResponse(JSONObject request) {
+		
+		// 验证服务器信息
+		String signature = request.getString("signature");
+        String timestamp = request.getString("timestamp");
+
+        if(signature == null) {
+            JSONObject data = new JSONObject();
+            data.put("msg","need signature");
+            return data;
+        } else if(timestamp == null) {
+            JSONObject data = new JSONObject();
+            data.put("msg","need timestamp");
+            return data;
+        } else if(!new Validator().validate(timestamp, signature)) {
+            JSONObject data = new JSONObject();
+            data.put("msg","valid fail");
+            return data;
+        }
 
         // 初始化可能需要的数据
         String action = request.getString("action");
