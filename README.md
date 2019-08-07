@@ -16,17 +16,11 @@ UUIA SDK in Java，一个向校园开发者提供快速适配 UUIA 框架并接�
 
 若有任何疑问，请提出 issue 或直接与我们的开发者联系。
 
-## SDK 异常处理
-#### LackNecessaryInfoException
-
-当您向中心服务器返回的数据类型缺少应填充的必要属性时，此异常将被抛出。
-
-#### NotImplementedException
-
-您还未实现此操作的数据获取逻辑时，此异常将被抛出。
-
 ## API规约
 本脚手架项目实现了 UUIA API。您可以 [查看 UUIA API 规约文档](https://github.com/uuia/UUIA/blob/master/API.md)。
+
+## 插件开发  
+您可以为子节点开发插件，为小程序增加新功能，关于Java SDK的插件开发请查看[UUIA Java SDK 插件开发指南](https://github.com/uuia/UUIA-Java-SDK/blob/master/PLUGIN.md)
 
 ## 开源协定
 本项目遵循 GPL-2.0 开源协议之规定。

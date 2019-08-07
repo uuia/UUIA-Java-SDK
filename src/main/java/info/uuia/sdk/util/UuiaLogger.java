@@ -2,6 +2,9 @@ package info.uuia.sdk.util;
 
 import java.util.Date;
 
+/**
+ * @author UUIA
+ */
 public class UuiaLogger {
     public static void i(String tag, String content) {
         System.out.println(new Date().toString() + ": INFO [" + tag + "]" + content);

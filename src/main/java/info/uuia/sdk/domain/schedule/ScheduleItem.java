@@ -1,36 +1,58 @@
 package info.uuia.sdk.domain.schedule;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-
 import java.util.ArrayList;
 
+/**
+ * @author UUIA
+ */
 public class ScheduleItem {
-    private String courseName;
-    private String courseCode;
-    private String[] teachers;
-    private JSONArray courseSchedules;
+    private String name;
+    private String code;
+    private ArrayList<String> teachers;
+    private ArrayList<DetailItem> schedules;
 
-    public ScheduleItem(String courseName, String courseCode, String[] teachers, ArrayList<DetailItem> courseSchedules) {
-        this.courseName = courseName;
-        this.courseCode = courseCode;
+    public ScheduleItem(String courseName, String courseCode, ArrayList<String> teachers, ArrayList<DetailItem> courseSchedules) {
+        this.name = courseName;
+        this.code = courseCode;
         this.teachers = teachers;
-        this.courseSchedules = JSONArray.parseArray(JSON.toJSONString(courseSchedules));
+        this.schedules = courseSchedules;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public ScheduleItem() {
+        teachers = new ArrayList<>();
+        schedules = new ArrayList<>();
     }
 
-    public String getCourseCode() {
-        return courseCode;
+
+    public String getName() {
+        return name;
     }
 
-    public String[] getTeachers() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public ArrayList<String> getTeachers() {
         return teachers;
     }
 
-    public JSONArray getCourseSchedules() {
-        return courseSchedules;
+    public void addTeacher(String teacher) {
+        teachers.add(teacher);
+    }
+
+    public ArrayList<DetailItem> getSchedules() {
+        return schedules;
+    }
+
+    public  void addSchedule(DetailItem schedule) {
+        schedules.add(schedule);
     }
 }

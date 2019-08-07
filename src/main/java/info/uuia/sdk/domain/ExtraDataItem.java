@@ -1,8 +1,7 @@
 package info.uuia.sdk.domain;
 
-import com.alibaba.fastjson.JSONObject;
 
-public class ExtraDataItem extends JSONObject {
+public class ExtraDataItem  {
     private String key;
     private String value;
 

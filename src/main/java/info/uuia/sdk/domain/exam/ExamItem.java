@@ -1,21 +1,33 @@
 package info.uuia.sdk.domain.exam;
 
-import com.alibaba.fastjson.JSONArray;
 import info.uuia.sdk.domain.ExtraDataItem;
 
+import java.util.ArrayList;
+
+/**
+ * @author UUIA
+ */
 public class ExamItem {
     private String name;
     private String courseCode;
     private String time;
     private String place;
-    private JSONArray extraData;
+    private ArrayList<ExtraDataItem> extraData;
 
-    ExamItem(String name, String courseCode, String time, String place) {
+    public ExamItem(String name, String courseCode, String time, String place) {
         this.name = name;
         this.courseCode = courseCode;
         this.time = time;
         this.place = place;
-        this.extraData = new JSONArray();
+        extraData = new ArrayList<>();
+    }
+
+    public ExamItem(String name, String courseCode, String time, String place, ArrayList<ExtraDataItem> extraData) {
+        this.name = name;
+        this.courseCode = courseCode;
+        this.time = time;
+        this.place = place;
+        this.extraData = extraData;
     }
 
     public String getName() {
@@ -34,7 +46,7 @@ public class ExamItem {
         return place;
     }
 
-    public JSONArray getExtraData() {
+    public ArrayList<ExtraDataItem> getExtraData() {
         return extraData;
     }
 

@@ -1,25 +1,34 @@
 package info.uuia.sdk.domain.exam;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import info.uuia.sdk.domain.ResponseData;
 
 import java.util.ArrayList;
 
+/**
+ * @author UUIA
+ */
 public class Exam implements ResponseData {
     private String uuid;
-    private JSONArray courses;
+    private ArrayList<ExamItem> courses;
 
-    public Exam(String uuid, String gpa, ArrayList<ExamItem> courses) {
+    public Exam( ArrayList<ExamItem> courses) {
+        this.courses = courses;
+    }
+
+    public Exam(String uuid, ArrayList<ExamItem> courses) {
         this.uuid = uuid;
-        this.courses = JSONArray.parseArray(JSON.toJSONString(courses));
+        this.courses = courses;
+    }
+
+    public void setUuid(String uuid){
+        this.uuid = uuid;
     }
 
     public String getUuid() {
         return uuid;
     }
 
-    public JSONArray getCourses() {
+    public ArrayList<ExamItem> getCourses() {
         return courses;
     }
 }

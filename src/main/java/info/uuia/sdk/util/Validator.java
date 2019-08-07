@@ -1,27 +1,25 @@
 package info.uuia.sdk.util;
 
 import com.alibaba.fastjson.JSONObject;
-import info.uuia.sdk.constant.Constant;
+import info.uuia.sdk.Config;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
+
 
 public class Validator {
+
+	/*
+	*@param JSONobject request HTTP请求内容
+	*@return Boolean 是否验证通过
+	*/	
     public boolean validate(JSONObject request) {
+
         String signature = request.getString("signature");
         String timestamp = request.getString("timestamp");
-        String nonce = request.getString("nonce");
-        UuiaLogger.i("UUIA Validator", "sig=" + signature + ",timestamp=" + timestamp + ",nonce=" + nonce);
+        UuiaLogger.i("UUIA Validator", "sig=" + signature + ",timestamp=" + timestamp);
 
-        String[] strings = new String[]{Constant.appToken, timestamp, nonce};
-        StringBuilder builder = new StringBuilder();
-        Arrays.sort(strings);
-        for (String string : strings) {
-            builder.append(string);
-        }
-
-        String res = sha1(builder.toString());
+        String res = sha256(sha256(Config.UUIA_APP_ID + Config.UUIA_APP_SECRET) + timestamp);
         if (signature.equalsIgnoreCase(res)) {
             UuiaLogger.i("UUIA Validator", "Success");
             return true;
@@ -31,9 +29,14 @@ public class Validator {
         return false;
     }
 
-    private String sha1(String str) {
+    /*
+    * Desctiption: sha256散列
+	* @param String str 要散列的字符串
+	* @return String 散列的结果HEX格式
+    */	
+    private String sha256(String str) {
         try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] bytes = digest.digest(str.getBytes());
             return toHex(bytes);
         } catch (NoSuchAlgorithmException e) {
@@ -42,6 +45,11 @@ public class Validator {
         return "";
     }
 
+    /*
+	* Description 将byte转化为HEX字符串
+	* @param byte[] 要转化的数据
+	* @return String 转化的HEX字符串
+    */
     private String toHex(byte[] bytes) {
         StringBuilder str = new StringBuilder();
         for (byte b : bytes) {

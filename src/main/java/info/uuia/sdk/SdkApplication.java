@@ -1,14 +1,15 @@
 package info.uuia.sdk;
 
+import info.uuia.sdk.util.Semester;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UuiaSdkJavaApplication {
+public class SdkApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(UuiaSdkJavaApplication.class, args);
+        Semester.init();
+        SpringApplication.run(SdkApplication.class, args);
     }
 
 }
-

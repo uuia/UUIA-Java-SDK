@@ -8,6 +8,9 @@ import info.uuia.sdk.domain.ResponseData;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 
+/**
+ * @author UUIA
+ */
 public class CampusCard implements ResponseData {
 
     @NotNull
@@ -16,14 +19,35 @@ public class CampusCard implements ResponseData {
     private String studentID;
     private String name;
     private String balance;
-    private JSONArray extraData;
+    private ArrayList<ExtraDataItem> extraData;
 
-    public CampusCard(String studentID, String name, String balance, ArrayList<ExtraDataItem> extraData) {
+    public CampusCard(String uuid, String studentID, String name, String balance) {
+        this.uuid = uuid;
         this.studentID = studentID;
         this.name = name;
         this.balance = balance;
-        this.extraData = new JSONArray();
-        this.extraData = JSONArray.parseArray(JSON.toJSONString(extraData));
+        this.extraData = new ArrayList<ExtraDataItem>();
+    }
+
+    public CampusCard(String uuid, String studentID, String name, String balance, JSONArray extraData) {
+        this.uuid = uuid;
+        this.studentID = studentID;
+        this.name = name;
+        this.balance = balance;
+        this.extraData = (ArrayList<ExtraDataItem>) JSON.parseArray(extraData.toJSONString(), ExtraDataItem.class);
+    }
+
+    public CampusCard(String uuid, String studentID, String name, String balance, ArrayList<ExtraDataItem> extraData) {
+        this.uuid = uuid;
+        this.studentID = studentID;
+        this.name = name;
+        this.balance = balance;
+        this.extraData = extraData;
+    }
+
+
+    public void setUuid(String uuid){
+        this.uuid = uuid;
     }
 
     public String getUuid() {
@@ -42,7 +66,11 @@ public class CampusCard implements ResponseData {
         return balance;
     }
 
-    public JSONArray getExtraData() {
+    public ArrayList<ExtraDataItem> getExtraData() {
         return extraData;
+    }
+
+    public void addItem(String key, String value) {
+        extraData.add(new ExtraDataItem(key, value));
     }
 }

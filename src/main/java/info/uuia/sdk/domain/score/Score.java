@@ -6,17 +6,35 @@ import info.uuia.sdk.domain.ResponseData;
 
 import java.util.ArrayList;
 
+/**
+ * @author UUIA
+ */
 public class Score implements ResponseData {
     private String uuid;
     private String gpa;
-    private JSONArray courses;
+    private ArrayList<ScoreItem> courses;
 
-    public Score(String uuid, String gpa, ArrayList<ScoreItem> courses) {
-        this.uuid = uuid;
-        this.gpa = gpa;
-        this.courses = JSONArray.parseArray(JSON.toJSONString(courses));
+    public Score( ArrayList<ScoreItem> courses) {
+        this.courses = courses;
     }
 
+    public Score(String uuid,String gpa, ArrayList<ScoreItem> courses) {
+        this.uuid = uuid;
+        this.gpa = gpa;
+        this.courses = courses;
+    }
+
+    public Score(String uuid, String gpa, JSONArray courses) {
+        this.uuid = uuid;
+        this.gpa = gpa;
+        this.courses = (ArrayList<ScoreItem>) JSON.parseArray(courses.toJSONString(), ScoreItem.class);
+    }
+	
+	public Score(String gpa, ArrayList<ScoreItem> courses) {
+        this.gpa = gpa;
+        this.courses = courses;
+    }
+	
     public String getUuid() {
         return uuid;
     }
@@ -25,7 +43,7 @@ public class Score implements ResponseData {
         return gpa;
     }
 
-    public JSONArray getCourses() {
+    public ArrayList<ScoreItem> getCourses() {
         return courses;
     }
 }
